@@ -2,15 +2,25 @@ package com.brunadelmouro.udemytdd;
 
 public abstract class Money {
     protected int amount;
+    protected String currency;
 
-    public abstract Money times(int multiplier);
+    public Money(int amount, String currency) {
+        this.amount = amount;
+        this.currency = currency;
+    }
+
+    protected String currency() {
+        return currency;
+    }
+
+    protected abstract Money times(int multiplier);
 
     public static Money dollar(int amount){
-        return new Dollar(amount);
+        return new Dollar(amount, "USD");
     }
 
     public static Money franc(int amount){
-        return new Franc(amount);
+        return new Franc(amount, "CHF");
     }
 
     @Override
@@ -20,4 +30,6 @@ public abstract class Money {
         Money money = (Money) o;
         return amount == money.amount;
     }
+
+
 }
